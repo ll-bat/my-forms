@@ -21,6 +21,9 @@
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
         "websocket-extensions": ">=0.1.4"
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     }
 }

@@ -21,6 +21,16 @@ class Blog extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function isPublic(){
+        return $this->is_public === 1;
+    }
+    public function togglePublic(){
+        if ($this->isPublic())
+            $this->is_public = 0;
+        else
+            $this->is_public = 1;
+        $this->save();
+    }
     public function getDay(){
         return  $this->created_at->format('d');
     }

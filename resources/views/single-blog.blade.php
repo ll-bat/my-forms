@@ -37,7 +37,12 @@
                             </div>
                             <hr />
                             <div class="blog_details">
-                                <p>{{$blog->body}}</p>
+                                <?php
+                                   $ps = explode('<br>', $blog->body);
+                                ?>
+                                @foreach($ps as $p)
+                                    <p>&nbsp;&nbsp;{{$p}}</p>
+                                @endforeach
 
                                 <div class="blog-info-link">
                                     <div class="mt-5" style="margin-left:-17px;">

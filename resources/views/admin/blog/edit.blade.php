@@ -2,7 +2,86 @@
 
 
 
+@section('header')
+    <style>
 
+
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 55px;
+            height: 27px;
+            float:right;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {display:none;}
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input.default:checked + .slider {
+            background-color: #444;
+        }
+        input.primary:checked + .slider {
+            background-color: #2196F3;
+        }
+        input.success:checked + .slider {
+            background-color: #8bc34a;
+        }
+        input.info:checked + .slider {
+            background-color: #3de0f5;
+        }
+        input.warning:checked + .slider {
+            background-color: #FFC107;
+        }
+        input.danger:checked + .slider {
+            background-color: #f44336;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+@endsection
 
 
 
@@ -64,26 +143,58 @@
                 @enderror
             </div>
 
+            <div class="">
+              <div class="float-left">
+                 <input type="file" value="Upload"
+                        name="image"
+                 /><br/>
 
-
-            <input type="file" value="Upload"
-                   name="image"
-            /><br/>
-
-               @error("image")
-               <p class="text text-danger text-sm">
-                   {{$message}}
-               </p>
-               @enderror
+                 @error("image")
+                   <p class="text text-danger text-sm">
+                     {{$message}}
+                   </p>
+                 @enderror
+              </div>
+                <div class="float-right">
+                    <div class="container text-right">
+                        <span class="text-muted m-2" style="font-family: 'Comic Sans MS'">Public: </span>
+                        <label class="switch">
+                            <input type="checkbox" class="primary"
+                                   @if ($blog->isPublic()) checked @endif
+                                   onchange="togglePublish()">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
 
             <button class="btn btn-info mt-5" style="border-radius: 20px;">Update</button>
-
-
 
           </div>
        </div>
     </form>
+    <script>
+        function togglePublish(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+             $.ajax({
+                  url: 'toggle',
+                  type: 'get',
+                  data:
+                     '_token={{csrf_token()}}',
+                  success: function (res) {
+                       alert(res)
+                  },
+                  error: function (request, status, error) {
+                      alert(request.responseText);
+                  }
+             })
+        }
 
+    </script>
 
 @endsection
 

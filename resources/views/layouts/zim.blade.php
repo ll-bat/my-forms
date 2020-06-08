@@ -20,18 +20,24 @@
         Home
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <!-- CSS Files -->
-{{--    <link href="" rel="stylesheet" />--}}
+
+    <link rel = "icon" href ="{{getAvatar()}}"
+          type = "image/x-icon">
+
     <link href="/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    @yield('header')
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="/js/custom.js"></script>
+
 </head>
 
 <body class="" style="background-color: rgb(244, 243, 239)">
@@ -179,6 +185,14 @@
 {{--                </div>--}}
 {{--            </div>--}}
 {{--        </footer>--}}
+
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
     </div>
 </div>
 <!--   Core JS Files   -->

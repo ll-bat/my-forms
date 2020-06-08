@@ -59,6 +59,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function(){
 
 
         Route::get('/blog/{blog:id}/edit', 'BlogController@edit')->name('blog.edit');
+        Route::get('/blog/{blog:id}/toggle', 'BlogController@toggle');
+
         Route::patch('/blog/{blog:id}/edit', 'BlogController@update');
 
         Route::get('/blog/{blog}/delete', 'BlogController@delete');

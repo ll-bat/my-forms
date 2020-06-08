@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs =Blog::latest()->paginate(3);
+        $blogs =Blog::where('is_public',1)->latest()->paginate(3);
 
         return view('blog' ,[
             'blogs' => $blogs
@@ -50,6 +50,12 @@ class BlogController extends Controller
 
         $blog->update($data);
         return redirect()->to('user/blogs');
+    }
+
+    public function toggle(Blog $blog){
+        $blog->togglePublic();
+
+        return 'done';
     }
 
     public function delete(Blog $blog){
