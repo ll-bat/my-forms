@@ -37,17 +37,20 @@
                             </div>
                             <hr />
                             <div class="blog_details">
-                                <?php
-                                   $ps = explode('<br>', $blog->body);
-                                ?>
-                                @foreach($ps as $p)
-                                    <p>&nbsp;&nbsp;{{$p}}</p>
-                                @endforeach
+{{--                                <?php--}}
+{{--                                   $ps = explode('<br>', $blog->body);--}}
+{{--                                ?>--}}
+{{--                                @foreach($ps as $p)--}}
+{{--                                    <p>&nbsp;&nbsp;{{$p}} </p>--}}
+{{--                                @endforeach--}}
+                                   {!! $blog->body !!}
 
                                 <div class="blog-info-link">
                                     <div class="mt-5" style="margin-left:-17px;">
                                         <div class="" style="margin-left:0;">
                                             <div class="main mt-3 all-comments pl-0">
+                                                <u class="ml-3 text-muted" style="font-size: .8em; font-family: 'Comic Sans MS;">All comments:</u>
+                                                <hr class="ml-3">
                                                 @foreach($blog->comments as $comment)
                                                     @include('_comment')
                                                 @endforeach
@@ -64,6 +67,7 @@
                                                     </div>
                                                 @endif
                                             @endguest
+                                            <br /> <br /> <br /> <br />
                                         </div>
                                     </div>
                                 </div>

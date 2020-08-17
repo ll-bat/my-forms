@@ -1,5 +1,16 @@
 @extends('layouts/zim')
 
+
+
+
+
+
+
+<?php
+    $users = \App\User::all();
+?>
+
+
 @section('content')
 
     <div class="row">
@@ -13,10 +24,10 @@
                     <div class="author">
                         <a href="">
                             <img src="{{$profile->pathAvatar()}}" class="avatar border-gray" />
-                            <h5 class="title">Chet Faker</h5>
+                            <h5 class="title">{{current_user()->username}}</h5>
                         </a>
                         <p class="description" style="font-size:.9em">
-                            @chetfaker
+                            <?php echo '@'; ?>{{ $profile->firstname }}_{{$profile->lastname}}
                         </p>
                     </div>
                     <p class="description text-center" style="font-size:.9em;">
@@ -33,12 +44,14 @@
                                 <img  class=""
                                       style="width:30px;height:30px;cursor:pointer; padding:4px; border-radius:50%"
                                       src="/icons/edit1.png"
+                                      title='Edit background image'
                                       onclick = "editImage(1)"
                                 />
                             </div>
                             <div class="col-lg-4 col-md-4 col-4 ml-auto mr-auto">
                                 <img src="/icons/camera.png"
                                      style="width:30px;height:30px;cursor:pointer; padding:4px;  border-radius:50%"
+                                     title='Edit profile image'
                                      onclick = "editImage(2)"
                                 />
                             </div>
@@ -80,7 +93,7 @@
 
                     @error('avatar')
                     <p class="text-danger text-sm pl-2" >
-                        {{ $message}} hih there
+                        {{ $message}}
                     </p>
                     @enderror
 
@@ -178,7 +191,7 @@
                              @enderror
                          </div>
                      </div>
-                    <div class="col-md-6 pl-1">
+                    <div class="col-md-6 pl-md-1">
                         <div class="form-group">
                             <label class="" style="font-size:.8em;">Last name</label>
                             <input type="text" class="form-control"
@@ -212,7 +225,7 @@
                      </div>
                  </div>
                  <div class="row">
-                     <div class="col-md-4 pr-1">
+                     <div class="col-md-4 pr-md-1">
                          <div class="form-group">
                              <label style="font-size:.8em;">City</label>
                              <input type="text" class="form-control"
@@ -227,7 +240,7 @@
                              @enderror
                          </div>
                      </div>
-                     <div class="col-md-4 px-1">
+                     <div class="col-md-4 px-md-1">
                          <div class="form-group">
                              <label style="font-size:.8em;">Country</label>
                              <input type="text" class="form-control"
@@ -242,7 +255,7 @@
                              @enderror
                          </div>
                      </div>
-                     <div class="col-md-4 pl-1">
+                     <div class="col-md-4 pl-md-1">
                          <div class="form-group">
                              <label style="font-size:.8em;">Postal Code</label>
                              <input type="number" class="form-control"
@@ -280,7 +293,7 @@
                      </div>
                   </div>
                  </form>
-                 <script>
+                 <script type='application/javascript'>
                      function fileClick(){
                          $1('output').style.opacity = '.4'
                          alert('fine')
@@ -309,6 +322,30 @@
                  </script>
                 </div>
             </div>
+            @if (current_user()->isAdmin())
+              <div class="">
+                <div class="card rounded-40" style="border:none;border-radius:10px;">
+                    <div class="card-body">
+                           <div class="row">
+                               @foreach($users as $user)
+                                  <div class="col-md-3 col-3">
+                                     <div class="m-4 mr-2">
+                                         <div class="avatar" style="">
+                                             <img class=""
+                                                  src = "{{$user->profile->pathAvatar()}}"
+                                                  style="width:50px;" />
+                                         </div>
+                                         <div class="content text-muted" style="margin-top:-5px;font-family: 'Comic Sans MS'">
+                                             <p>{{substr($user->username,0, 7)}}..</p>
+                                         </div>
+                                     </div>
+                                  </div>
+                               @endforeach
+                           </div>
+                    </div>
+                </div>
+               </div>
+             @endif
         </div>
     </div>
 @endsection

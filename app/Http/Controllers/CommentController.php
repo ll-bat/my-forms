@@ -26,7 +26,7 @@ class CommentController extends Controller
     }
 
     public function delete(Comment $comment){
-        $this->authorize('edit-staff');
+        $this->authorize('edit-staff',$comment);
 
         $comment->delete();
         return back();

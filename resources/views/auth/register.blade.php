@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ns-font-family">
         <div class="col-md-8">
-            <div class="mt-3">
+            <div class="mt-3 md-3">
 {{--                <div class="card-header">{{ __('Register') }}</div>--}}
 
                 <a class="text-info offset-md-3" href="{{route('check')}}" >Back</a>
@@ -81,4 +81,5 @@
         </div>
     </div>
 </div>
+    <br /><br /> <br /> <br /> <br />
 @endsection

@@ -1,13 +1,27 @@
 @extends('layouts/app')
 
 
+<?php
 
+
+
+
+
+   $catid = request('categoryId') ?? -1;
+?>
 
 
 
 @section('css')
     <link rel="stylesheet" href="css/style.css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <style>
+        .page-item {
+            margin: 5px !important;;
+        }
+
+    </style>
 @endsection
 
 
@@ -35,7 +49,11 @@
                                 <a class="d-inline-block" href="blog/{{$blog->id}}">
                                     <h2>{{$blog->excerpt}}</h2>
                                 </a>
-                                <p style="max-height: 300px;overflow: hidden;">{{$blog->body}}....</p>
+                                <!-- <div style='height:100px;'>
+                                   <p style='position:relative;'>
+                                     {!! $blog->body !!}
+                                   </p>
+                                 </div> -->
                                 <div class="blog-info-link">
                                     <p class="cursor grey" onclick="showComments({{$index}})"><i class="fa fa-comments" style="font-size:.9em;"></i>
                                             {{count($blog->comments)}} comments
@@ -43,7 +61,7 @@
                                     <div class="comm" style="margin-top:-10px;">
                                       <div class="comments" style="display:none;">
                                           <div class="main mt-3 all-comments">
-                                              @foreach($blog->comments as $comment)
+                                              @foreach($blog->comments->take(3) as $comment)
                                                   @include('_comment')
                                               @endforeach
                                           </div>
@@ -69,12 +87,34 @@
                         </article>
                     </div>
                    @endforeach
-                    <div class="" style="margin-left:50%">
-                        {{$blogs->links()}}
-                    </div>
-                      @section('script')
 
-                      @endsection
+                    @if (count($blogs) == 0)
+                       <h4 class="text-center">
+                           There are no blogs
+                       </h4>
+                    @endif
+
+                    <div class="" style="margin-left:50%">
+                        {{ $blogs->links() }}
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 pb-5">
+                    <div class="content offset-xl-4 this-color ns-font-family pointer offset-1">
+                        <ul class="list-style:none">
+                           <a href="blog"> <h5> Category </h5> </a>
+                            @foreach($categories as $category)
+                              <hr />
+                              <a href="?categoryId={{$category->id}}" class="this-color" style="color:#1b4962">
+                                  <li class="pt-0 @if ($category->id == $catid) th-color-s @else th-color @endif">
+                                      {{$category->name}}({{$category->getCount()}})
+                                  </li>
+                              </a>
+                           @endforeach
+                        </ul>
+
+                    </div>
                 </div>
             </div>
         </div>

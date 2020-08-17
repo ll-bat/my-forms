@@ -3,15 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
     public function index(){
-        $blogs =Blog::where('is_public',1)->latest()->paginate(3);
+
+        $categoryId = request('categoryId') ?? false;
+
+        if (!$categoryId)
+           $blogs = Blog::where('is_public',1)->latest()->paginate(3);
+        else
+           $blogs = Blog::where('is_public', 1)->where('category_id', $categoryId)->latest()->paginate(3);
+
+        $path = 'blog';
+        if ($categoryId)
+              $path.= '?categoryId='.$categoryId;
+
+        $blogs->setPath($path);
+
+        $categories = Category::where('id', '>', 0)->get();
 
         return view('blog' ,[
-            'blogs' => $blogs
+            'blogs' => $blogs,
+            'categories' => $categories
         ]);
     }
 
@@ -48,6 +65,10 @@ class BlogController extends Controller
     public function update(Blog $blog){
         $data = $this->validateBlog();
 
+        if ($blog->image != '')
+         if (file_exists($blog->image))
+           unlink('storage/'.$blog->image);
+
         $blog->update($data);
         return redirect()->to('user/blogs');
     }
@@ -59,6 +80,15 @@ class BlogController extends Controller
     }
 
     public function delete(Blog $blog){
+
+        try {
+            if ($blog->image != '')
+            unlink('storage/'.$blog->image);
+        }
+        catch(Exception $e){
+            echo 'blog does not have image';
+        }
+
         $blog->delete();
 
         return redirect()->to('user/blogs');
@@ -69,8 +99,12 @@ class BlogController extends Controller
             'title' => ['required', 'max:75', 'string'],
             'excerpt' => ['required', 'max:220', 'string'],
             'body' => ['required', 'string'],
+            'category_id' => ['integer', 'exists:categories,id'],
             'image'  => ['image']
         ]);
+        if (!isset($data['category_id'])){
+            $data['category_id'] = 0;
+        }
 
         if (isset($data['image'])){
             $data['image'] = request('image')->store('blogs');

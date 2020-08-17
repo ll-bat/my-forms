@@ -17,7 +17,7 @@ class UserController extends Controller
         if (request('password'))
         {
             $val = request()->validate(['password' => ['required', 'string', 'min:8', 'max:255']]);
-            $data['password'] = $val['password'];
+            $data['password'] = bcrypt($val['password']);
         }
 
         $user->update($data);

@@ -1,3 +1,7 @@
+<?php
+  $current_route = Request::path();
+?>
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -9,15 +13,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <link rel = "icon" href ="/img/title/test.png"
           type = "image/x-icon">
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,400i,500,700&amp;subset=latin,vietnamese,latin-ext,cyrillic,greek,cyrillic-ext,greek-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,22 +29,31 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- Styles -->
 
+    <link href="/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
     <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/zestyle.css" />
     <link rel="stylesheet" href="/css/flaticon.css">
 
-    <script src="/js/custom.js"></script>
+    <script type='application/javascript' src="/js/custom.js"></script>
     @yield('css')
 </head>
 <body class="">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
 {{--                    {{ config('app.name', 'Laravel') }}--}}
                     <img src="/img/logo/logo.png" />
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler mr-2 border-0"
+                        type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="{{ __('Toggle navigation') }}"
+
+                >
+                    <span class="navbar-toggler-bar bg-info" style="margin-left:-5px;height:2px;"></span>
+                    <span class="navbar-toggler-bar bg-warning" style="margin-top:5px;margin-left:-5px;height:2px;"></span>
+                    <span class="navbar-toggler-bar bg-primary" style="margin-top:5px;margin-left:-5px;height:2px;"></span>
                 </button>
 
                 <div class="collapse navbar-collapse p-0" id="navbarSupportedContent">
@@ -54,15 +64,11 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto" style="font-family: 'Segoe UI'; margin-bottom: -10px;">
+                    <ul class="navbar-nav ml-auto mr-3 fadeLeft" style="font-family: 'Segoe UI';margin-bottom: -10px;">
                         <!-- Authentication Links -->
-                        <li class="nav-item p-2">
+                        <li class="nav-item p-md-0 p-lg-2">
                             <a class="nav-link text-dark"  href="{{route('check')}}" > Home</a>
                         </li>
-                        <li class="nav-item p-2">
-                            <a class="nav-link text-dark" href="{{route('about')}}" > About</a>
-                        </li>
-
 {{--                        <li class="nav-item dropdown p-2">--}}
 {{--                            <a href="{{route('services')}}" id="services" style="display: none"></a>--}}
 {{--                            <a class="nav-link text-dark" href="/"--}}
@@ -80,8 +86,18 @@
 {{--                        </li>--}}
 
                         <li class="nav-item p-2">
+                            <a class="nav-link text-dark" href="{{route('docs')}}" > Docs</a>
+                        </li>
+
+                        <li class="nav-item p-2">
                             <a class="nav-link text-dark" href="{{route('blog')}}" > Blog</a>
                         </li>
+
+                        <li class="nav-item p-2">
+                            <a class="nav-link text-dark" href="{{route('about')}}" > About</a>
+                        </li>
+
+
 {{--                        <li class="nav-item">--}}
 {{--                            <a class="nav-link text-dark" href="#" > Blog</a>--}}
 {{--                            <ul class="submenu bg-danger">--}}
@@ -98,34 +114,16 @@
                             <a class="nav-link text-dark" href="{{route('contact')}}" > Contact</a>
                         </li>
 
-{{--                        @guest--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
-{{--                            </li>--}}
-{{--                            @if (Route::has('register'))--}}
-{{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
-{{--                                </li>--}}
-{{--                            @endif--}}
-{{--                        @else--}}
-{{--                            <li class="nav-item dropdown">--}}
-{{--                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
-{{--                                    {{ Auth::user()->name }} <span class="caret"></span>--}}
-{{--                                </a>--}}
-
-{{--                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-{{--                                    <a class="dropdown-item" href="{{ route('logout') }}"--}}
-{{--                                       onclick="event.preventDefault();--}}
-{{--                                                     document.getElementById('logout-form').submit();">--}}
-{{--                                        {{ __('Logout') }}--}}
-{{--                                    </a>--}}
-
-{{--                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-{{--                                        @csrf--}}
-{{--                                    </form>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                        @endguest--}}
+                        @auth
+                            <div class="nav-item p-2 pointer" style="border:none;">
+                                <a class="nav-link text-dark"
+                                   href="user/home"
+                                   style="margin-top:-10px;">
+                                    <img class="d-md-block d-none" src="/icons/user.png" width="40">
+                                    <span class="d-md-none d-block">My profile</span>
+                                </a>
+                            </div>
+                        @endauth
                     </ul>
                 </div>
             </div>
@@ -194,8 +192,18 @@
                 $$("all-comments")[i].innerHTML += result
                 // console.log($$('all-comments')[i])
             }
+
+            $(window).on('autoresize', function(){
+             $('.autoresize').on('input', function () {
+                 this.style.height = 'auto';
+
+                 this.style.height =
+                     (this.scrollHeight) + 'px';
+             });
+        })
         </script>
     </div>
+
     <div class="footer" style="background-color: rgb(8, 11, 18);">
         <div style="margin-left:50px;margin-top:20px;margin-right:50px;">
             <hr style="border:none; border-top:1px solid rgba(35, 49, 72,1);">

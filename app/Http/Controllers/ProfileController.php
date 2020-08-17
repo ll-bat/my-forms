@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Provider\File;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -37,13 +38,24 @@ class ProfileController extends Controller
             'background'=> ['image']
         ]);
 
-        if (isset($data['avatar']))
-         $data['avatar'] = request('avatar')->store('avatars');
-
-        if (isset($data['background']))
-         $data['background'] = request('background')->store('backgrounds');
-
         $profile = auth()->user()->profile;
+
+        if (isset($data['avatar'])){
+            if ($profile->avatar != '' && $profile->avatar != 'null')
+                if (file_exists('storage/'.$profile->avatar))
+                    unlink('storage/'.$profile->avatar);
+
+            $data['avatar'] = request('avatar')->store('avatars');
+        }
+
+        if (isset($data['background'])){
+            if ($profile->background != '' && $profile->background != 'null')
+                if (file_exists('storage/'.$profile->background))
+                   unlink('storage/'.$profile->background);
+
+            $data['background'] = request('background')->store('backgrounds');
+        }
+
         $profile->update($data);
 
         return back();

@@ -1,6 +1,8 @@
 @extends('layouts/zim')
 
-
+<?php
+   $categories = \App\Category::all();
+?>
 
 @section('header')
     <style>
@@ -92,22 +94,38 @@
         @method('PATCH')
         <div class="row">
            <div class="container">
-            <div class="form-group">
-                <h5 form="title">Title</h5>
-                <input type="text" class="form-control"
-                       style="font-size: 1em;"
-                       placeholder="Add title"
-                       name="title"
-                       value="{{$blog->title}}"
-                />
-                @error("title")
-                 <p class="text text-danger text-sm">
-                     {{$message}}
-                 </p>
-                @enderror
-            </div>
-
-
+               <div class="row">
+                   <div class="col-md-8">
+                       <div class="form-group" style="clear:both;">
+                           <h5 form="title">Title</h5>
+                           <input type="text" class="form-control"
+                                  style="font-size: 1em;"
+                                  placeholder="Add title"
+                                  name="title"
+                                  value="{{$blog->title}}"
+                           />
+                           @error("title")
+                            <p class="text text-danger text-sm">
+                                {{$message}}
+                            </p>
+                           @enderror
+                       </div>
+                   </div>
+                   <div class="col-md-4">
+                       <div class="form-group">
+                           <h5 for="Category" class="pr-3">Category</h5>
+                           <select class="form-control" name="category_id">
+                               @foreach($categories as $category)
+                                   <option
+                                       class="p-5 text-muted" style="font-family: 'Comic Sans MS'"
+                                       value="{{$category->id}}"
+                                       @if ($category->id == $blog->category_id) selected @endif
+                                   >{{$category->name}}</option>
+                               @endforeach
+                           </select>
+                       </div>
+                   </div>
+               </div>
 
             <div class="form-group">
                 <h5 form="excerpt">Excerpt</h5>
@@ -124,12 +142,11 @@
                 @enderror
             </div>
 
-
-
             <div class="form-group">
                 <h5 for="excerpt">Body</h5>
                 <textarea
                     class="form-control"
+                    id="article-editor"
                     style=""
                     placeholder="Here goes body..."
                     rows="6"
@@ -155,6 +172,8 @@
                    </p>
                  @enderror
               </div>
+
+
                 <div class="float-right">
                     <div class="container text-right">
                         <span class="text-muted m-2" style="font-family: 'Comic Sans MS'">Public: </span>
@@ -173,7 +192,7 @@
           </div>
        </div>
     </form>
-    <script>
+    <script type="application/javascript">
         function togglePublish(){
             $.ajaxSetup({
                 headers: {
@@ -193,7 +212,7 @@
                   }
              })
         }
-
+        CKEDITOR.replace( 'article-editor');
     </script>
 
 @endsection

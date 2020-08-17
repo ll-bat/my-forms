@@ -4,7 +4,9 @@
 
 
 
-
+<?php
+   $categories = \App\Category::all();
+?>
 
 
 @section('content')
@@ -12,19 +14,36 @@
         @csrf
         <div class="row">
             <div class="container">
-                <div class="form-group">
-                    <h5 form="title">Title</h5>
-                    <input type="text" class="form-control"
-                           style="font-size: 1em;"
-                           placeholder="Add title"
-                           name="title"
-                           value="{{old('title')}}"
-                    />
-                    @error("title")
-                    <p class="text text-danger text-sm">
-                        {{$message}}
-                    </p>
-                    @enderror
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group" style="clear:both;">
+                            <h5 form="title">Title</h5>
+                            <input type="text" class="form-control"
+                                   style="font-size: 1em;"
+                                   placeholder="Add title"
+                                   name="title"
+                                   value="{{old('title')}}"
+                            />
+                            @error("title")
+                            <p class="text text-danger text-sm">
+                                {{$message}}
+                            </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h5 for="Category" class="pr-3">Category</h5>
+                            <select class="form-control" name="category_id">
+                                @foreach($categories as $category)
+                                    <option
+                                        class="p-5 text-muted" style="font-family: 'Comic Sans MS'"
+                                        value="{{$category->id}}"
+                                    >{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -46,6 +65,7 @@
                     <h5 for="excerpt">Body</h5>
                     <textarea
                         class="form-control"
+                        id = "article-editor"
                         style=""
                         placeholder="Here goes body..."
                         rows="6"
@@ -74,4 +94,7 @@
             </div>
         </div>
     </form>
+    <script type="application/javascript">
+        CKEDITOR.replace( 'article-editor');
+    </script>
 @endsection

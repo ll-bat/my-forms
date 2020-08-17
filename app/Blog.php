@@ -1,13 +1,12 @@
 <?php
 
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
 
-    protected $fillable = ['user_id', 'title','excerpt' ,'body', 'image'];
+    protected $fillable = ['user_id', 'title','category_id', 'excerpt' ,'body', 'image'];
 
     public function path(){
         if ($this->image == '')
@@ -31,6 +30,7 @@ class Blog extends Model
             $this->is_public = 1;
         $this->save();
     }
+
     public function getDay(){
         return  $this->created_at->format('d');
     }

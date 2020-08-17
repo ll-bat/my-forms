@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Blog;
+use App\Comment;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -30,8 +31,8 @@ class AuthServiceProvider extends ServiceProvider
             return $blog->user->is($user);
         });
 
-        Gate::define('edit-staff', function (\App\User $user){
-            return $user->isAdmin();
+        Gate::define('edit-staff', function (\App\User $user, Comment $comment){
+            return $user->isAdmin() || $comment->user->is($user);
         });
 
     }

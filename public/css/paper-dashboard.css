@@ -1681,9 +1681,10 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 
 .form-check input[type="checkbox"],
 .form-check-radio input[type="radio"] {
-  opacity: 0;
-  position: absolute;
-  visibility: hidden; }
+  /*opacity: 0;*/
+  /*position: absolute;*/
+  /*visibility: hidden;*/
+}
 
 .form-check input[type="checkbox"]:checked + .form-check-sign::after {
   opacity: 1; }
@@ -4229,6 +4230,44 @@ input.form-control{
     border:1px solid lighgrey;
     opacity:.8;
     font-size:.9em;
+}
+
+textarea.docs-input{
+    padding:4px;
+    border:none;
+    border-radius:0;
+    word-break: break-word;
+    background-color: white;
+}
+textarea.tk-bottom{
+    border-bottom: 2px solid transparent;
+    color: #9c55df;
+}
+textarea.tk-bottom:focus{
+    border:none;
+    border-bottom:2px solid #4f1e7c;
+    color: #8e23f1;
+}
+textarea.th-bottom{
+    border-bottom:1px solid transparent;
+}
+textarea.th-bottom:hover{
+    border-bottom:1px solid #99a1be60
+}
+textarea.th-bottom:focus{
+    border:none;
+    border-bottom:1px solid #9b2d6a;
+    background-color: #d9ddeb;
+}
+textarea.lt-bottom:hover {
+    border-bottom:1px solid rgba(0, 191, 255, 1);
+}
+
+textarea.docs-input:focus{
+    background-color:#F4F3EF;
+}
+textarea.mod-input:hover{
+    border-bottom: 1px solid grey;
 }
 
 .card .card-user{

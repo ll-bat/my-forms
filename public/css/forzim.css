@@ -1,0 +1,60 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes fadeDown {
+    from {margin-top: -10px}
+    to {}
+}
+.c-dropdown-menu {
+    display: none;
+    box-shadow: 2px 2px 4px lightgrey;
+    position: absolute;
+    background-color: white;
+    animation-name: fadeDown;
+    animation-duration: .31s;
+}
+
+
+
+/*.c-parent-dropdown:hover .c-dropdown-menu {*/
+/*     position:absolute;*/
+/*     display: block;*/
+/*     background-color: white;*/
+/* }*/
+
+.c-parent-dropdown:hover .c-dropdown-menu {
+    display: block;
+}
+
+.c-dropdown-item {
+    transition: all .3s ease-in;
+}
+
+.c-dropdown-item:hover {
+    background-color: black;
+    color:white !important;
+}
+
+.c-top-radius {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.c-bottom-radius {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.pointer{
+    cursor:pointer !important;
+}

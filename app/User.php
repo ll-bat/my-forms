@@ -41,9 +41,9 @@ class User extends Authenticatable
         return $this->is_admin === 1;
     }
 
-    public function setPasswordAttribute($value){
-        $this->attributes['password'] = bcrypt($value);
-    }
+//    public function setPasswordAttribute($value){
+//        $this->attributes['password'] = bcrypt($value);
+//    }
 
     public function profile(){
         return $this->hasOne(Profile::class);

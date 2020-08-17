@@ -16,8 +16,10 @@
 .mt-115 {
     margin-top: 115px;
 }
+
+
 .bg-about{
-    background-image: url('/img/hero/hero2.jpg');
+    background-image: url("public/img/hero/hero2.jpg");
     background-repeat: no-repeat;
     height:450px;
     margin-left:-10px;
@@ -105,13 +107,14 @@ body {
     color:rgba(24, 33, 43, 1);
 }
 .grey-h{
-    background-color:rgba(179, 181, 183 ,.1);
+    background-color:rgba(179, 181, 183 ,.1) !important;
     transition: .5s;
 }
 .grey-h:hover{
-    background-color:rgba(179, 181, 183 ,.3);
-    color: rgba(24, 33, 43, .81);
+    background-color:rgba(179, 181, 183 ,.3) !important;
+    color: rgba(24, 33, 43, .81) !important;
 }
+
 @keyframes fade-in {
     from{opacity:0; margin-top:-50px;}
     to{opacity:1}
@@ -140,13 +143,13 @@ body {
 }
 
 .focus-bottom{
-    border:none;
-    border-bottom: 2px solid lightgrey;
+    border:none !important;
+    border-bottom: 2px solid lightgrey !important;
     transition: .3s;
 }
 .focus-bottom:focus{
     /*border:none;*/
-    border-bottom:2px solid #14435c;
+    border-bottom:2px solid #14435c !important;
     opacity: .8;
 }
 
@@ -172,6 +175,85 @@ body {
 .mycolor-h:hover{
     background-color: lightgoldenrodyellow;;
 }
+.list-item{
+    padding:4px;
+}
+.pointer{
+    cursor:pointer !important;
+}
+.text-lg{
+    font-size:1.2em;
+}
+.bg-mine{
+    background-color: rgba(144, 145, 145, 1);
+}
+.th-color{
+    transition: .2s;
+}
+.th-color:hover
+{
+    text-shadow: 0px 0px 1px #14436c
+}
+.th-color-s{
+    text-shadow: 0px 0px 1px #14436c
+}
+.this-color{
+    color:#14435c;
+}
+
+.myfont{
+    font-family: "Comic Sans MS";
+}
+.new-category{
+    color:red;
+    border:1px solid red;
+}
 
 
 
+.circle{
+    border:2px solid lightgrey;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+}
+.rect{
+    border:2px solid lightgrey;
+    width:20px;
+    height:20px;
+    border-radius:2px;
+}
+
+.rounded-50 {
+    border-radius:50px;
+}
+
+.bg-lightgrey {
+    background-color: rgba(0,0,0,.4);
+}
+.bg-lightgrey:hover {
+    background-color: rgba(0,0,0,.6) !important;
+}
+
+.c-border-left{
+    border-left: 1px solid transparent;
+}
+
+.c-border-left:hover {
+   border-left: 1px dotted lightgrey;
+}
+
+.page-item .page-link{
+    border: 1px solid lightgrey !important;
+    color: grey !important;
+}
+
+.page-link:hover {
+    border-color: grey !important;
+}
+
+.page-item.active .page-link {
+    border: 1px solid black !important;
+    background-color: white;
+    color:black !important;
+}
