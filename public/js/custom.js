@@ -73,3 +73,27 @@ let st = (o, d)=>{
 let tout = (fn,t) => {
     setTimeout(fn,t)
 }
+
+let cnst = ''
+function cl(el,c, t,  pr){
+    if (c == '')
+        el.className = cnst
+    else {
+        cnst = el.className
+        el.className += (' ' + c)
+    }
+    t.loading = pr
+}
+
+function min(a,b){
+    return Math.min(a,b)
+}
+
+function max(a,b){
+    return Math.max(a,b)
+}
+
+
+Array.prototype.insert = function ( index, item ) {
+    this.splice( index, 0, item );
+};

@@ -12,8 +12,8 @@
       style='border-left-width:5px;'
     >
         <div class='row'>
-                <div class="col-md-8">
-                     <form class="ml-3 mt-3" >
+               <div class="col-md-8 col-sm-8 col-12 m-auto">
+                     <form class="ml-3 mr-3 mr-sm-0 mt-3" >
                           <head-component 
                              :object='object' 
                              @saving='showSpinner()' 
@@ -21,8 +21,8 @@
                      ></head-component>
                      </form>
                 </div>
-                <div class="col-md-3" style="">
-                    <div class="m-4 ml-0 text-right" style="">
+                <div class="col-md-4 col-sm-4" style="">
+                    <div class="mx-4 mx-sm-0 mt-sm-4 mt-3 mb-sm-0 mb-4" style="">
                            <slot name='ipanel' v-bind:comp='this'></slot>
                     </div>
                 </div>

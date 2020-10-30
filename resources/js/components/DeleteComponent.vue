@@ -4,7 +4,11 @@
                         style='cursor:pointer;border:none;outline:0'
                         :disabled='disabled'
                         >
-                    <i class="fa fa-trash text-danger h-hover-grey"></i>
+
+
+
+                    <!-- <i class="fa fa-trash text-danger h-hover-grey"></i> -->
+                    <img src='/icons/trash.png' width='18' class='mt-1' />
                 </button>
             </div>
 </template>

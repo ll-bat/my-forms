@@ -2,22 +2,23 @@
           
           
 
-    <div>
+    <div class='w-100'>
         <div class='my-dropdown position-absolute ns-position-absolute' 
              :class="{'ns-is-up pt-2 pb-2 ns-rounded-7 ns-my-light-border ns-my-shadow' : expanded}"
-             style='width:100%; max-width:200px; margin-left:-10px;'>
+             style='width:100%;max-width:230px; margin-left:-10px;'>
             <div v-for="button in buttons">
                  <div class='my-dropdown-item'
                       :class="{'d-none' : items[button.link], 'ns-changed-hover' : !expanded}"
                       @click="choose(button.link)"
                  >
-                 <template v-if = 'button.icon'>
-                    <img class="ns-icon" :src='button.icon' style='margin-top:-2px;' />
-                 </template>
-                 <template v-else>
-                     <i :class='button.class' class='position-relative'></i>
-                 </template>
-                 <span class='pl-1'> {{button.name}} </span>
+                   <template v-if = 'button.icon'>
+                      <img class="ns-icon" :src='button.icon' style='margin-top:-2px;' />
+                   </template>
+                   <template v-else>
+                       <i :class='button.class' class='position-relative'></i>
+                   </template>
+                   <span class='pl-1'> {{button.name}} </span>
+                      
                  </div>
                  <div v-if = 'button.hasHead && expanded' class='mt-2 mb-2 ns-has-head'></div>
             </div>
@@ -85,11 +86,11 @@
             this.items[this.selected] = false
 
             this.buttons = [
-                {link:'paragraph', name :  'Paragraph', class: 'nc-icon nc-align-left-2', hasHead: true},
+                {link:'paragraph', name :  'Paragraph', icon: '/icons/paragraph.png', hasHead: true},
                 {link:'radio', name :  'Multiple choice', icon: '/icons/radio.png'},
                 {link:'checkbox', name :  'Checkboxes', icon: '/icons/checkbox.png'},
                 {link:'dropdown', name :  'Dropdown', icon: '/icons/dropdown.png', hasHead:true},
-                {link:'upload', name :  'Image upload', class: 'fa fa-upload'},
+                {link:'upload', name :  'Image upload', icon: '/icons/upload.png'},
             ]
         },
         created(){

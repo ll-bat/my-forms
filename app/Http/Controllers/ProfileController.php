@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     public function show(){
+        // dd(\current_user()->profile);
+
        return view('user.profile' ,[
            'profile' => auth()->user()->profile
            ]);

@@ -9,7 +9,7 @@
 
 <div class="card-body ml-2 pl-1">
     @foreach($q->rels as $ind => $rel)
-    <label class="ns-container mt-2" style='font-size:.95em; color:rgba(0,0,0,.8);'>{{$rel->value}}
+    <label class="ns-container mt-3" style='font-size:.95em; color:rgba(0,0,0,.8);'>{{$rel->value}}
         <input type="checkbox"
                name="{{$q->name}}[]"
                value="{{ $rel->id }}"

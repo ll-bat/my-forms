@@ -8,7 +8,9 @@
 
 
 
-
+.test {
+    color: rgb(220, 240, 132);
+}
 
 
 @keyframes fadeDown {
@@ -58,3 +60,132 @@
 .pointer{
     cursor:pointer !important;
 }
+
+.ns-border-bottom {
+    border-bottom: 2px inset rgb(163, 164, 223);
+}
+
+.top-left-radius-0 {
+    border-top-left-radius: 0;
+}
+
+.bottom-left-radius-0 {
+    border-bottom-left-radius: 0;
+}
+
+.thin-border {
+    border: 1px solid lightgrey;
+}
+.partial-shadow {
+    box-shadow: 2px 2px 4px lightgrey;
+}
+.full-shadow {
+    box-shadow: 2px 2px 4px lightgrey, -2px -2px 4px lightgrey;
+}
+
+.text-transparent {
+    color: transparent;
+}
+
+.mybtn:focus {
+    border:0;
+    outline: 0;
+}
+
+.hoverable{
+    background-color: white;
+    transition: all .4s ease-out;
+    border: 1px solid lightgrey;
+}
+
+.hoverable:hover {
+    background-color: rgb(243, 239, 239) !important;
+    box-shadow: none;
+}
+
+.delete-button:hover {
+    background-color: transparent !important;
+    color: black !important;
+}
+
+.delete-button:focus {
+    background-color: white !important;
+    color:black !important;
+}
+
+@keyframes _toastAnim {
+    from {transform: translateY(-50px); opacity: .0;}
+}
+
+#toast {
+    background-color: #04a052;
+    border: 0;
+    right:20px;
+    bottom: 40px;
+    animation: _toastAnim .5s ease-out;
+    transition: all .6s ease-in;
+}
+
+@keyframes gradient { 
+     0% { background-position: 0% 50% } 
+     50% { background-position: 100% 50% } 
+     100% { background-position: 0% 50% } 
+}
+
+.back-button {
+    border: 1px solid #cc0033;
+    box-shadow: 1px 1px 2px lightgrey;
+    color: #cc0033;
+    padding:6px 25px;
+}
+
+.back-button:hover {
+    background-color:#9871a5 !important;
+    border-color: transparent;
+    background: linear-gradient(315deg, #99668c, #e77070, #9e3b3b);
+    animation: gradient 12s ease infinite;
+    background-size: 300% 300%;
+}
+
+.back-button:focus {
+    background-color: white !important;
+    color: #cc0033 !important;
+}
+
+.radius-0 {
+    border-radius: 0 !important;
+}
+
+.publish-cancel-btn {
+    background-color:rgba(0, 128, 128, 0.815) !important;
+}
+
+.publish-cancel-btn:hover {
+    background-color: rgba(28, 95, 95, 0.815) !important;
+}
+
+@keyframes _publishModal {
+    from {width: 100px;left:calc(50% - 50px); opacity:0}
+}
+
+#publish-modal{
+    animation: _publishModal .6s ease-out;
+}
+
+.bg-ns-active {
+    background-color: rgb(47, 168, 53) !important;
+    box-shadow: 2px 2px 4px lightgrey;
+}
+
+.bg-ns-active:hover {
+    background-color: rgb(52, 139, 88) !important;
+}
+
+.text-purple {
+    color: purple !important;
+}
+
+.text-awesome {
+    font-family: 'Courier New', Courier, monospace;
+}
+

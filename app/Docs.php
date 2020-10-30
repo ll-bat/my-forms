@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Docs extends Model
 {
     protected $table = 'docs';
-    protected $fillable = ['title', 'type', 'image', 'require', 'name'];
+    protected $fillable = ['uf_id', 'title', 'type', 'image', 'require', 'name'];
 
 
     public function toggleRequire(){

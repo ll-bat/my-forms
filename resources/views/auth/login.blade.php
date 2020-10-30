@@ -24,6 +24,7 @@
                                        class="form-control
                                        @error('email') is-invalid @enderror"
                                        name="email"
+                                       style='border-width:1px !important;'
                                        placeholder="Username"
                                        value="{{ old('email') }}"
                                        required autocomplete="email"

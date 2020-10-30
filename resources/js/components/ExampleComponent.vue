@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-       
+          <router-link to="/vue"><a>Back to the root</a></router-link>
     </div>
 </template>
 

@@ -199,6 +199,18 @@
     color: #673ab7;
 }
 
+.bg-ns-color {
+    background-color:  #2d6eaa !important;
+}
+
+.bg-ns-color:hover {
+    background-color:  #2b83d6 !important;
+}
+
+.test {
+   background-color:  #063b44 !important;
+}
+
 .ns-font-family{
     font-family: 'Google Sans',Roboto,Arial,sans-serif;
     font-size: 16px;
@@ -213,4 +225,8 @@
 
 .ns-font-normal {
     font-size: 12px;
+}
+
+.rounded-10 {
+    border-radius: 10px;
 }

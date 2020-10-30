@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -41,9 +41,6 @@ class User extends Authenticatable
         return $this->is_admin === 1;
     }
 
-//    public function setPasswordAttribute($value){
-//        $this->attributes['password'] = bcrypt($value);
-//    }
 
     public function profile(){
         return $this->hasOne(Profile::class);
@@ -53,9 +50,6 @@ class User extends Authenticatable
         return $this->profile->pathAvatar();
     }
 
-    public function credentials(){
-        return $this->hasOne(Credential::class);
-    }
 
 
 
