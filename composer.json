@@ -1,13 +1,4 @@
 {
-    "name": "Laravel project",
-    "author" : "ll-bat",
-    "email" : "gshatakishvili@gmail.com",
-    "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
     "license": "MIT",
     "require": {
         "php": "^7.2.5",

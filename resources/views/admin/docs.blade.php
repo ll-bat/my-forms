@@ -121,23 +121,28 @@
         }
 
         .ns-index-border {
-            border:none !important;
+            border: none !important;
             border-radius: 0px !important;
-            border-bottom:1px solid transparent !important;
+            border-bottom: 1px solid transparent !important;
         }
+
         .ns-index-border:focus {
             border-bottom-color: blue !important;
         }
 
         .card {
-            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12) !important;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
             border-radius: 10px !important;
             border-bottom-left-radius: 0px !important;
         }
 
         @keyframes _created {
-            from {opacity: 0}
-            to {opacity: 1}
+            from {
+                opacity: 0
+            }
+            to {
+                opacity: 1
+            }
         }
 
         .created {
@@ -150,9 +155,11 @@
             background-color: transparent;
             transition: all .41s ease-in;
         }
+
         .edit-index-bg:hover {
-            background-color: rgba(0,0,0,.1);
+            background-color: rgba(0, 0, 0, .1);
         }
+
         .faded {
             opacity: .8;
             box-shadow: none !important;
@@ -163,61 +170,63 @@
     </style>
 
     <style>
- 
+
         .res-btn {
             text-transform: capitalize;
-            color:blue !important;
-            background:white;
+            color: blue !important;
+            background: white;
         }
+
         .res-btn:hover {
-            color:purple !important;
-            background:white !important;
+            color: purple !important;
+            background: white !important;
         }
 
         .res-btn:focus {
-            color:purple !important;
-            background:white !important;
+            color: purple !important;
+            background: white !important;
         }
 
         .res-btn:active {
-            color:purple !important;
-            background:white !important;
+            color: purple !important;
+            background: white !important;
             transform: scale(.98);
         }
 
         .res-btn:link {
-            color:purple !important;
-            background:white !important;
+            color: purple !important;
+            background: white !important;
         }
 
         .notification {
-            position:absolute;
-            font-size:.7rem;
-            background:orange;
-            color:white;
+            position: absolute;
+            font-size: .7rem;
+            background: orange;
+            color: white;
             padding: 3px 7px;
-            border-radius:50%;
-            top:0;
+            border-radius: 50%;
+            top: 0;
         }
 
-     </style>
+    </style>
 @endsection
 
 
 @section('toolbar')
-   <div class='position-absolute ml-lg-0 ml-5' style='top:-28px;'>
-       <a class='btn back-button mt-5 py-1' style='border-width: 1px !important;'
-          href='home'> Back 
-       </a>  
-   </div>
+    <div class='position-absolute ml-lg-0 ml-5' style='top:-28px;'>
+        <a class='btn back-button mt-5 py-1' style='border-width: 1px !important;'
+           href='home'> Back
+        </a>
+    </div>
 @endsection
 
 @section('content')
-    <div class="container text-center position-absolute">
-        <div class="row justify-content-center" >
-            <div class="col-lg-7 col-md-10 col-sm-12 col-12 offset-lg-2 offset-md-1">
+    <div class="text-center" style="width: 98%">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-7 col-md-10 col-sm-12 col-12 text-center">
                 <div class="" :class="{'d-none': !loading}" style="margin-top:30%;">
-                    <div class="spinner-border text-warning d-none d-sm-inline-block" style="width:5rem; height: 5rem;border-width: 10px;"></div>
+                    <div class="spinner-border text-warning d-none d-sm-inline-block"
+                         style="width:5rem; height: 5rem;border-width: 10px;"></div>
                 </div>
                 <div v-for="(component,index) in components">
                     <component @choose='changeShadow(index)'
@@ -268,8 +277,9 @@
                                            class="form-control ns-index-border text-primary font-weight-bolder ml-1"
                                            style="width:45px;margin-top:-.47rem"
                                            @click="activeCheckIcon(index)"
-                                           v-model="component.newindex" />
-                                    <div class="d-none edit-index created pointer" @click="clickCheckIcon(component,index)">
+                                           v-model="component.newindex"/>
+                                    <div class="d-none edit-index created pointer"
+                                         @click="clickCheckIcon(component,index)">
                                         <i class="fa fa-check position-absolute text-success edit-index-bg rounded-pill p-2"
                                            style="margin-top: -.16rem; margin-left:-.3rem;"
                                         ></i>
@@ -293,7 +303,7 @@
                                         <div class='mr-4' @click='clickImage(index)'>
                                             <!-- <i class='nc-icon nc-image text-primary font-weight-bold h-hover-grey ns-hover-b'
                                                style='cursor:pointer;'></i> -->
-                                            <img src='/icons/add-image.png' width='20' class='pointer mt-1' />
+                                            <img src='/icons/add-image.png' width='20' class='pointer mt-1'/>
                                         </div>
                                     </div>
 
@@ -324,15 +334,15 @@
                         </template>
                     </component>
                 </div>
-                
-                <button  v-if = 'components.length > 0'
-                       class='btn btn-primary  rounded border-0 ml-2 float-left d-none' 
-                       :class="{'d-block': !loading}" 
-                       style='width:7rem'
-                       @click='update()'
-                       >
-                   <span class="spinner-border spinner-border-sm" :class="{'d-none': !updating}"></span>
-                       Update 
+
+                <button v-if='components.length > 0'
+                        class='btn btn-primary  rounded border-0 ml-2 float-left d-none'
+                        :class="{'d-block': !loading}"
+                        style='width:7rem'
+                        @click='update()'
+                >
+                    <span class="spinner-border spinner-border-sm" :class="{'d-none': !updating}"></span>
+                    Update
                 </button>
             </div>
 
@@ -344,7 +354,8 @@
         <div style='margin-bottom:100px;'></div>
     </div>
 
-    <div class="position-absolute text-left d-md-none mr-3 mr-sm-5" id="sm-actions-panel" style="width:30%; left:35%;top:1rem;">
+    <div class="position-absolute text-left d-md-none mr-3 mr-sm-5" id="sm-actions-panel"
+         style="width:30%; left:35%;top:1rem;">
         <panel-component></panel-component>
     </div>
 
@@ -357,58 +368,58 @@
             }, 300)
         })
 
-        
-        function publishRequest(status){
+
+        function publishRequest(status) {
             axios['get'](`docs/${status}`)
-                    .then(res => {
-                        // alert('done')
-                    })
-                    .catch(res => {
-                        alert('Error occured')
-                        console.log(res.data)
-                    })
+                .then(res => {
+                    // alert('done')
+                })
+                .catch(res => {
+                    alert('Error occured')
+                    console.log(res.data)
+                })
         }
 
-        function showModal(){
+        function showModal() {
             $('.is-loading').addClass('invisible')
-                 $('.before-loading').removeClass('d-none')
-                 $1('publish-modal-button').click()
+            $('.before-loading').removeClass('d-none')
+            $1('publish-modal-button').click()
 
-                 tout(() => {
-                    $('.is-loading').removeClass('invisible')
-                    $('.before-loading').addClass('d-none')
-                 },1200)
+            tout(() => {
+                $('.is-loading').removeClass('invisible')
+                $('.before-loading').addClass('d-none')
+            }, 1200)
 
-                 $1('link').innerText = "{{$link}}"
+            $1('link').innerText = "{{$link}}"
         }
 
-        function publishForm(){
-                 showModal()
-                 publishRequest('active')
+        function publishForm() {
+            showModal()
+            publishRequest('active')
 
-                 tout(() => {
-                     $('#form-active').addClass('d-none')
-                     $('#form-hidden').removeClass('d-none')
-                 },400)
-        }
- 
-        function hideForm(){
-                 showModal()
+            tout(() => {
+                $('#form-active').addClass('d-none')
+                $('#form-hidden').removeClass('d-none')
+            }, 400)
         }
 
-        function disableForm(obj){
-                 publishRequest('disable')
-                 obj.disabled = true 
-                 tout(() => {
-                     obj.disabled = false
-                     $(obj).next().click()
-                     $('.modal-backdrop').remove()
-                 },600)
+        function hideForm() {
+            showModal()
+        }
 
-                 tout(() => {
-                     $('#form-active').removeClass('d-none')
-                     $('#form-hidden').addClass('d-none')
-                 })
+        function disableForm(obj) {
+            publishRequest('disable')
+            obj.disabled = true
+            tout(() => {
+                obj.disabled = false
+                $(obj).next().click()
+                $('.modal-backdrop').remove()
+            }, 600)
+
+            tout(() => {
+                $('#form-active').removeClass('d-none')
+                $('#form-hidden').addClass('d-none')
+            })
         }
 
     </script>
@@ -417,14 +428,18 @@
 
 
 @section('mbutton')
-      <a href="docs/responses" class='btn btn-primary res-btn rounded-pill border-0 mr-4 position-relative'>
-           Responses
-           <span class='notification'> {{$resCount}} </span>
-      </a>
+    <a href="docs/responses" class='btn btn-primary res-btn rounded-pill border-0 mr-4 position-relative'>
+        Responses
+        <span class='notification'> {{$resCount}} </span>
+    </a>
 
-      <button onclick='publishForm()' id='form-active'
-              class='btn btn-primary bg-ns-color text-capitalize border-0 py-1 px-4 mr-4 @if ($active) d-none @endif'> Publish </button>
-      <button onclick='hideForm()'  id='form-hidden'
-              class='btn btn-primary bg-ns-active text-capitalize border-0 py-1 px-4 mr-4 @if (!$active) d-none @endif'> Active </button> 
-      
+    <button onclick='publishForm()' id='form-active'
+            class='btn btn-primary bg-ns-color text-capitalize border-0 py-1 px-4 mr-4 @if ($active) d-none @endif'>
+        Publish
+    </button>
+    <button onclick='hideForm()' id='form-hidden'
+            class='btn btn-primary bg-ns-active text-capitalize border-0 py-1 px-4 mr-4 @if (!$active) d-none @endif'>
+        Active
+    </button>
+
 @endsection
