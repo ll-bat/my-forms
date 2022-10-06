@@ -38,11 +38,11 @@ class DocumentController extends Controller
         $header = Docs::create(['uf_id' => $id, 'type' => 'header']);
         $rel = Rels::create(['docs_id' => $header->id]);
         $rel->value = "";
-    
+
         $header->rels = $rel;
         return $header;
     }
-    
+
     public function create(){
         $data = request()->validate([
             'type' => ['required', 'string']
@@ -60,15 +60,20 @@ class DocumentController extends Controller
         $data = $request->validate([
             'image' => ['required', 'image']
         ]);
- 
-        if ($docs->image != 'null')
-          unlink('storage/'.$docs->image);
+
+        if ($docs->image != 'null') {
+            try {
+                unlink('storage/'.$docs->image);
+            } catch (\Exception $exception) {
+                // image not found
+            }
+        }
         $docs->image = request('image')->store("docs");
         $docs->save();
 
         return response($docs->getImage() , 200);
     }
-    
+
     public function update(Docs $docs){
 
         if (request()->has('required'))
@@ -97,7 +102,7 @@ class DocumentController extends Controller
         $data = request()->validate([
             'data' => ['array', 'required'],
             'data.*' => 'integer'
-        ]);   
+        ]);
 
         $id = session()->get('form_id');
 
@@ -117,8 +122,13 @@ class DocumentController extends Controller
 
     public function deleteUpload(Docs $docs){
 
-        unlink('storage/'.$docs->image);
-        $docs->image = 'null'; 
+        try {
+            unlink('storage/'.$docs->image);
+        } catch (\Exception $exception) {
+            // image not found
+        }
+
+        $docs->image = 'null';
         $docs->save();
 
         return response('success', 200);
@@ -130,8 +140,8 @@ class DocumentController extends Controller
            unlink('storage/'.$doc->image);
 
         $doc->delete();
-        
+
         return response('success', 200);
     }
-    
+
 }
