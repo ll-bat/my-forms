@@ -388,9 +388,11 @@
             tout(() => {
                 $('.is-loading').removeClass('invisible')
                 $('.before-loading').addClass('d-none')
+                $1('link-copy-button').classList.remove('d-none')
             }, 1200)
 
             $1('link').innerText = "{{$link}}"
+            $1('link').href = "{{$link}}";
         }
 
         function publishForm() {
@@ -404,6 +406,7 @@
         }
 
         function hideForm() {
+            $1('link-copy-button').classList.add('d-none')
             showModal()
         }
 
@@ -414,6 +417,7 @@
                 obj.disabled = false
                 $(obj).next().click()
                 $('.modal-backdrop').remove()
+                $1('link-copy-button').classList.add('d-none')  
             }, 600)
 
             tout(() => {

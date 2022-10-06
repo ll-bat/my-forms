@@ -28,7 +28,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
     <!-- Styles -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
     <link rel="stylesheet" href="/css/custom.css" />
     <link rel="stylesheet" href="/css/zestyle.css" />
@@ -51,6 +51,12 @@
 	        	size: 20vw;
 	        	family: $font;
 	        };
+         }
+
+         .box-shadow {
+            box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%),
+                        0 1px 10px 0 rgb(0 0 0 / 12%),
+                        0 2px 4px -1px rgb(0 0 0 / 20%);
          }
     </style>
 </head>

@@ -29,7 +29,6 @@ class UserDocsController extends Controller
 
 
      public function submit(Link $link){
-
         if (!$link->active){
             return response('This page no longer accepts responses :((', 404);
         }
@@ -53,7 +52,16 @@ class UserDocsController extends Controller
 
          Json::save($link->form_id, $info);
 
-         return response('Your response has been recorded', 200);
+         $form_url = $link->getFormAddress();
+
+         $site_url = 'http://' . request()->getHost() . (env('APP_ENV') === 'local' 
+            ? ':' . request()->getPort() 
+            : '');
+
+        return view('user.form_submitted', [
+            'form_url' => $form_url,
+            'site_url' => $site_url,
+        ]);
      }
 
 

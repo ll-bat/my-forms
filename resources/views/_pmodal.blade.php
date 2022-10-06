@@ -19,9 +19,18 @@
         
         <!-- Modal body -->
         <div class="modal-body text-center">
-             <p class='text-primary font-weight-bolder is-loading text-left' id='link'>
-                  
-              </p>
+             <div id='link-copy-div'>
+                <a 
+              href='' 
+              target='_blank'
+              class='text-primary font-weight-bolder is-loading text-left' 
+              id='link'>
+              </a>
+             <button class='btn btn-sm btn-outline-secondary d-none' id='link-copy-button' 
+                     onclick='navigator.clipboard.writeText($1("link").href)'> 
+              <i class='fa fa-copy' title='copy'></i>
+             </button> 
+             </div>
               <div class='spinner spinner-border position-absolute d-none before-loading' 
                    style='bottom:calc(50% - 30px);
                           left:calc(50% - 30px);width:60px;height:60px;

@@ -33,7 +33,7 @@ class DocsController extends Controller
     public function create(){
 
         $form = UserForm::create(['user_id' => current_user()->id]);
-        $link = Link::create(['form_id' => $form->id, 'link' => md5(\uniqid())]);
+        $link = Link::create(['form_id' => $form->id, 'link' => substr(md5(\uniqid()), 0, 25)]);
 
         session()->forget('form_id');
         session()->put('form_id', $form->id);
@@ -46,9 +46,8 @@ class DocsController extends Controller
     public function show(){
         $id = session()->get("form_id");
        
-        $base = request()->getHost();
+
         $link = Link::where('form_id', $id)->first();
-        $url  = $base . '/form/' . $link->link;
 
  
         $responseCount = Json::getCount($id);
@@ -56,7 +55,7 @@ class DocsController extends Controller
         // dd($responses);
 
         return view('admin.docs', [
-            'link' => $url,
+            'link' => $link->getFormAddress(),
             'active' => $link->active,
             'resCount' => $responseCount
         ]);
@@ -76,7 +75,7 @@ class DocsController extends Controller
         $form_id = session()->get('form_id');
         Link::where('form_id', $form_id)->update(['active' => 1]);
 
-        return response('ok',200);
+        return response('ok', 200);
     }
 
     public function disable(){
