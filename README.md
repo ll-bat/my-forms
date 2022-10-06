@@ -1,5 +1,4 @@
-### Mini Google forms clone
-
+### Mini Google forms clone - [DEMO version](https://mini-forms.herokuapp.com/) 
 #### App supports: 
  - creating form 
  - adding multiple questions (multiple-choice questions, dropdown, checkbox, input, image upload)
