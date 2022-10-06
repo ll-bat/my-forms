@@ -1,14 +1,22 @@
 {
+    "email" : "gshatakishvili@gmail.com",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.4",
         "barryvdh/laravel-dompdf": "^0.8.6",
-        "fideloper/proxy": "^4.2",
+        "ext-json": "*",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "fideloper/proxy": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
